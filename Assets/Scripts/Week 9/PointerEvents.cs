@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PointerEvents : MonoBehaviour
 {
@@ -16,7 +17,10 @@ public class PointerEvents : MonoBehaviour
     public float xLimit;
     public float yLimit;
 
-    public GameObject spawner;
+    public Vector3 spawner;
+    public GameObject prefab;
+
+    public Canvas canvas;
 
     public void MouseOver()
     {
@@ -34,13 +38,18 @@ public class PointerEvents : MonoBehaviour
         pos.x += x;
         
 
-        if (pos.x == xLimit)
+        if (pos.x >= xLimit)
         {
-            pos.x = -400;
-            pos.y += y;
+            pos.x = 60;
+            pos.y -= y;
         }
 
+        spawner = new Vector3(pos.x-450, pos.y-240, pos.z);
             transform.position = pos;
+
+        GameObject newPrefab = Instantiate(prefab,spawner, Quaternion.identity);
+        newPrefab.transform.SetParent(canvas.transform, false);
+
     }
 
 }
