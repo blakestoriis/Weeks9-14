@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 3fea106907f4c5e42a3f7ec04cb58049
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - HealthBar: {instanceID: 0}
+  - DamageBar: {instanceID: 0}
+  - button1: {instanceID: 0}
+  - button2: {instanceID: 0}
+  - button3: {instanceID: 0}
+  - button4: {instanceID: 0}
+  - button5: {instanceID: 0}
+  - button6: {instanceID: 0}
+  - statbox: {instanceID: 0}
+  - feed: {instanceID: 0}
+  - fight: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
