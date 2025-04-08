@@ -17,6 +17,8 @@ public class Clips : MonoBehaviour
     public Slider HealthBar; //slider that dislays health
     public Slider DamageBar; //slider that displays strength/damage
 
+    public TextMeshProUGUI DisplayCost; //displays upgrade cost
+
 
 
     // Start is called before the first frame update
@@ -29,6 +31,7 @@ public class Clips : MonoBehaviour
     void Update()
     {
         display.text = clips.ToString(); //translates the clips to string so they can be displayed
+        DisplayCost.text = upgradeCost.ToString();
     }
 
     public void feed() //when teh feed button is pressed it costs 5 clips and the homunclus heals

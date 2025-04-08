@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class HomunculusStats : MonoBehaviour
@@ -18,12 +19,11 @@ public class HomunculusStats : MonoBehaviour
     public Slider DamageBar; //slider that displays strength/damage
     public Slider healthTracker; // tracks the homonculus's current health
 
-    //the select buttons
-    public GameObject start;
-
     //display stuff so they can be turned on and off
     public GameObject statbox;
     public GameObject feed;
+
+    public GameObject gameover; //gameover screen
 
     // Start is called before the first frame update
     void Start()
@@ -32,7 +32,7 @@ public class HomunculusStats : MonoBehaviour
         damage = UnityEngine.Random.Range(1f, 5f); //damage is randomly generated to start between 1 and 5
         displayHealth = health;
         displayDamage = damage;
-        
+
     }
 
     // Update is called once per frame
@@ -43,16 +43,19 @@ public class HomunculusStats : MonoBehaviour
 
         HealthBar.value = health; //sets the value of teh slider to the health value
         DamageBar.value = displayDamage;//sets damage/strength to the slider value
+
+        if (displayHealth <= 0)
+        {
+            gameover.SetActive(true);
+
+        }
+
     }
 
-    //selecting a homunculus only changes appearance
-    public void H1() //homunculus 1
+    public void gameOver()
     {
-        //turns off the select homunculus buttons and turns on the stats and display stuff
-        start.SetActive(false);
-        feed.SetActive(true);
-        statbox.SetActive(true);
-        
+        gameover.SetActive(false);
+        Start();
     }
 
 }
