@@ -11,6 +11,7 @@ public class fightingRing : MonoBehaviour
     //other UIs that get turned on and off
     public GameObject statbox;
     public GameObject feed;
+    public GameObject h;
 
     public HomunculusStats stats; //collects the stats to create win chance
     public float score; //player score
@@ -49,6 +50,7 @@ public class fightingRing : MonoBehaviour
     {
         feed.SetActive(false);
         statbox.SetActive(false);
+        h.SetActive(false);
         buttons.SetActive(true);
         leave.SetActive(true);
     }
@@ -58,6 +60,7 @@ public class fightingRing : MonoBehaviour
     {
         feed.SetActive(true);
         statbox.SetActive(true);
+        h.SetActive(true);
         fightbox.SetActive(false);
         buttons.SetActive(false);
         leave.SetActive(false);
@@ -170,11 +173,20 @@ public class fightingRing : MonoBehaviour
 
     public Clips clip; //accessing the clips script to increase clips
 
-    int win;//tracks winning streak
+    int win = 1;//tracks winning streak
 
-    public void fight() // determines the winner / loser of the game
+    public void fight()
     {
+        StartCoroutine(FightCoroutine()); //starts coroutine
+    }
+
+    public IEnumerator FightCoroutine() // determines the winner / loser of the game
+    {
+
+        yield return new WaitForSeconds(1f); // 1 second delay
+        
         randomroll = Random.Range(1f, 100f);
+        statbox.SetActive(true);
         if (randomroll >= rounded) //if player lost (higher then percent)
         {
             stats.displayHealth -= level * 5; //lose level x 5 health
@@ -187,7 +199,7 @@ public class fightingRing : MonoBehaviour
 
         if (randomroll <= rounded) //if player won (lower then percent)
         {
-            clip.clips += (level * 10) * win; // you gain the level x 10 clips, along with times the win multiplier
+            clip.clips += (level * 10) * win ; // you gain the level x 10 clips, along with times the win multiplier
             win += 1; //adds to win streak
             text.SetActive(true); //shows text
             outcome.text = "Your homunculus won! ";

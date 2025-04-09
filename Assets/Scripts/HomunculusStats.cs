@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -25,6 +26,8 @@ public class HomunculusStats : MonoBehaviour
 
     public GameObject gameover; //gameover screen
 
+    public Clips clips;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +35,8 @@ public class HomunculusStats : MonoBehaviour
         damage = UnityEngine.Random.Range(1f, 5f); //damage is randomly generated to start between 1 and 5
         displayHealth = health;
         displayDamage = damage;
+
+        clips.clips = 50;
 
     }
 
@@ -56,6 +61,44 @@ public class HomunculusStats : MonoBehaviour
     {
         gameover.SetActive(false);
         Start();
+    }
+    public TextMeshProUGUI Hdisplayed; //display health number
+    public GameObject HD; //display
+    public TextMeshProUGUI Ddisplayed; //display damage number
+    public GameObject DD; //display
+
+    int roundedHealth; // rounded health for display
+    int roundedDamage; //rounded damage/strangth for display
+
+
+    public void healthHover() //hover over health stat
+    {
+        roundedHealth = Mathf.RoundToInt(health); //rounds to int 
+        roundedDamage = Mathf.RoundToInt(damage); // rounds to int
+
+        Hdisplayed.text = roundedHealth.ToString(); //updates the text to be the variable
+        HD.SetActive(true); //turns on text
+    }
+
+    public void healthHoverOFF() //hover off health stat
+    {
+       
+        HD.SetActive(false); //turns off text
+    }
+
+    public void strnegthHover() //hover over strength stat
+    {
+        roundedHealth = Mathf.RoundToInt(health); //rounds to int 
+        roundedDamage = Mathf.RoundToInt(damage); // rounds to int
+
+        Ddisplayed.text = roundedDamage.ToString(); //updates the text to be the variable
+        DD.SetActive(true); //turns on text
+    }
+
+    public void strnegthHoverOFF() //hover off strength stat
+    {
+
+        DD.SetActive(false); //turns off text
     }
 
 }

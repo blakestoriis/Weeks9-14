@@ -24,7 +24,7 @@ public class Clips : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        upgradeCost = 100;
     }
 
     // Update is called once per frame
@@ -43,7 +43,7 @@ public class Clips : MonoBehaviour
                 clips += 5;
             }
             clips -= 5; //-5 clips for payment
-            stats.displayHealth += 10; //plus 10 to current health
+            stats.displayHealth += 5; //plus 10 to current health
             if (stats.displayHealth > stats.health) //if current health is bigger than max health then its set to max health to avoid going over
             {
                 stats.displayHealth = stats.health;
